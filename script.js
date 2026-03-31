@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // 1. Mobile Navigation Toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.classList.toggle('active');
         // Toggle hamburger icon between bars and times
         const icon = hamburger.querySelector('i');
-        if(navLinks.classList.contains('active')){
+        if (navLinks.classList.contains('active')) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-times');
         } else {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: "0px 0px -50px 0px"
     };
 
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
             entry.target.classList.add('appear');
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Fetch GitHub Repositories Dynamically
     const githubContainer = document.getElementById('github-container');
     const githubUsername = 'SridharanK'; // Change to actual GitHub username if different
-    
+
     // Fallback data in case the API call fails or rate limits
     const fallbackRepos = [
         {
@@ -198,9 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
             btn.style.backgroundColor = 'var(--text-highlight)';
             btn.style.color = 'var(--bg-primary)';
-            
+
             contactForm.reset();
-            
+
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.style.backgroundColor = '';
