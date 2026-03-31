@@ -509,6 +509,140 @@ nav.scrolled {
     gap: 25px;
 }
 
+/* --- Project Card: Version 2 (Current Premium) --- */
+.project-card-v2 {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card-v2:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card-header-v2 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.project-icon-v2 {
+    font-size: 28px;
+    color: var(--accent-color);
+}
+
+.card-title-v2 {
+    font-size: 22px;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.card-description-v2 {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.card-features-v2 {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.card-features-v2 li {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-features-v2 li i {
+    color: var(--accent-color);
+    font-size: 14px;
+}
+
+.card-footer-v2 {
+    margin-top: auto;
+}
+
+.card-tech-v2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tech-tag-v2 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    background-color: var(--bg-primary);
+    padding: 4px 10px;
+    border-radius: 15px;
+    border: 1px solid var(--bg-tertiary);
+    transition: all 0.3s ease;
+}
+
+.project-card-v2:hover .tech-tag-v2 {
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+}
+
+.card-actions-v2 {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-v2 {
+    background-color: var(--accent-color);
+    color: var(--bg-primary);
+    border: 1px solid var(--accent-color);
+}
+
+.btn-primary-v2:hover {
+    background-color: transparent;
+    color: var(--accent-color);
+}
+
+.btn-outline-v2 {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+}
+
+.btn-outline-v2:hover {
+    background-color: var(--accent-hover);
+}
+
+/* --- Older Project Styles (Legacy/GitHub Feed) --- */
 .project-card {
     background-color: var(--bg-secondary);
     border-radius: 8px;
@@ -523,10 +657,6 @@ nav.scrolled {
 .project-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
-}
-
-.project-card.hide {
-    display: none;
 }
 
 .project-header {
@@ -914,247 +1044,4 @@ footer p {
 
 .section-title h2 {
     font-size: 22px;
-}
-/* =========================================================================
-   Premium Project Card (Classic & Elegant)
-   ========================================================================= */
-.premium-project-card {
-    display: block;
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--bg-tertiary);
-    border-radius: 12px;
-    padding: 30px;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-}
-
-.premium-project-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-color);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.project-icon {
-    font-size: 32px;
-    color: var(--accent-color);
-}
-
-.view-indicator {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--accent-color);
-    opacity: 0;
-    transform: translateX(-15px);
-    transition: all 0.4s ease;
-}
-
-.premium-project-card:hover .view-indicator {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.card-title {
-    font-size: 24px;
-    color: var(--text-primary);
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.card-description {
-    color: var(--text-secondary);
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.card-features {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 25px;
-}
-
-.card-features li {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.card-features li i {
-    color: var(--accent-color);
-    font-size: 14px;
-}
-
-.card-footer {
-    padding-top: 20px;
-    border-top: 1px solid var(--bg-tertiary);
-}
-
-.card-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.tech-tag {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-secondary);
-    background-color: var(--bg-primary);
-    padding: 6px 12px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-
-.premium-project-card:hover .tech-tag {
-    color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
-/* =========================================================================
-   Premium Project Card - Version 2 (Buttons)
-   ========================================================================= */
-.project-card-v2 {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--bg-tertiary);
-    border-radius: 12px;
-    padding: 30px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-card-v2:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-color);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-}
-
-.card-header-v2 {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.project-icon-v2 {
-    font-size: 28px;
-    color: var(--accent-color);
-}
-
-.card-title-v2 {
-    font-size: 22px;
-    color: var(--text-primary);
-    font-weight: 700;
-}
-
-.card-description-v2 {
-    color: var(--text-secondary);
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    flex-grow: 1;
-}
-
-.card-features-v2 {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 25px;
-}
-
-.card-features-v2 li {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.card-features-v2 li i {
-    color: var(--accent-color);
-    font-size: 14px;
-}
-
-.card-footer-v2 {
-    margin-top: auto;
-}
-
-.card-tech-v2 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 25px;
-}
-
-.tech-tag-v2 {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-secondary);
-    background-color: var(--bg-primary);
-    padding: 4px 10px;
-    border-radius: 15px;
-    border: 1px solid var(--bg-tertiary);
-    transition: all 0.3s ease;
-}
-
-.project-card-v2:hover .tech-tag-v2 {
-    border-color: var(--accent-color);
-    color: var(--text-primary);
-}
-
-.card-actions-v2 {
-    display: flex;
-    gap: 15px;
-}
-
-.btn-card {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-family: var(--font-mono);
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.btn-primary-v2 {
-    background-color: var(--accent-color);
-    color: var(--bg-primary);
-    border: 1px solid var(--accent-color);
-}
-
-.btn-primary-v2:hover {
-    background-color: transparent;
-    color: var(--accent-color);
-}
-
-.btn-outline-v2 {
-    background-color: transparent;
-    color: var(--accent-color);
-    border: 1px solid var(--accent-color);
-}
-
-.btn-outline-v2:hover {
-    background-color: var(--accent-hover);
 }
