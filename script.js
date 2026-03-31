@@ -142,79 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Fetch GitHub Repositories Dynamically
-    const githubContainer = document.getElementById('github-container');
-    const githubUsername = 'SridharanK'; // Change to actual GitHub username if different
 
-    // Fallback data in case the API call fails or rate limits
-    const fallbackRepos = [
-        {
-            name: 'java-microservices-demo',
-            description: 'A comprehensive demonstration of Spring Boot microservices with Eureka, Gateway, and Config Server.',
-            language: 'Java',
-            html_url: '#'
-        },
-        {
-            name: 'ecommerce-backend-api',
-            description: 'RESTful API for e-commerce platforms using Spring MVC, Hibernate, and JWT authentication.',
-            language: 'Java',
-            html_url: '#'
-        },
-        {
-            name: 'react-portfolio-v1',
-            description: 'Previous iteration of my developer portfolio built with React and Tailwind CSS.',
-            language: 'JavaScript',
-            html_url: '#'
-        }
-    ];
-
-    function renderRepos(repos) {
-        githubContainer.innerHTML = '';
-        repos.forEach(repo => {
-            const repoElement = document.createElement('div');
-            repoElement.className = 'project-card';
-            // Use similar styling to projects
-            repoElement.innerHTML = `
-                <div class="project-content">
-                    <div class="project-header">
-                        <i class="far fa-bookmark folder-icon" style="font-size: 30px;"></i>
-                        <div class="project-links">
-                            <a href="${repo.html_url}" target="_blank" aria-label="GitHub Link"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title" style="font-size: 18px;">${repo.name}</h3>
-                    <div class="project-description">
-                        <p>${repo.description || 'No description provided.'}</p>
-                    </div>
-                    <ul class="project-tech">
-                        <li>${repo.language || 'Unknown'}</li>
-                    </ul>
-                </div>
-            `;
-            githubContainer.appendChild(repoElement);
-        });
-    }
-
-    // Try fetching from real API
-    fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&direction=desc&per_page=3`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data && data.length > 0) {
-                renderRepos(data);
-            } else {
-                renderRepos(fallbackRepos);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching GitHub repos:', error);
-            // Render fallback repos if API fails (e.g., rate limit, fake username)
-            renderRepos(fallbackRepos);
-        });
 
     // 6. Form Submission (Prevent default for UI demo)
     const contactForm = document.getElementById('contact-form');
