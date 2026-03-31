@@ -27,9 +27,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. Sticky Navbar & Active Link Update on Scroll
+    // 2. Sticky Navbar, Active Link & Smooth Scroll
     const navbar = document.getElementById('navbar');
     const sections = document.querySelectorAll('section');
+
+    // Smooth Scroll for Navbar Links
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            
+            // Only handle internal links
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    // Close mobile nav first
+                    navLinks.classList.remove('active');
+                    hamburger.querySelector('i').classList.remove('fa-times');
+                    hamburger.querySelector('i').classList.add('fa-bars');
+                    
+                    // Smooth Scroll
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
 
     window.addEventListener('scroll', () => {
         // Sticky nav styling
@@ -44,15 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+            // Adjusted threshold for better active link detection
+            if (window.pageYOffset >= (sectionTop - 150)) {
                 current = section.getAttribute('id');
             }
         });
 
         navLinksItems.forEach(link => {
-            link.style.color = ''; // reset
+            link.classList.remove('active');
             if (link.getAttribute('href').includes(current)) {
-                link.style.color = 'var(--accent-color)';
+                link.classList.add('active');
             }
         });
     });
@@ -60,8 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Scroll Animations using Intersection Observer
     const faders = document.querySelectorAll('.fade-in');
     const appearOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
     };
 
     const appearOnScroll = new IntersectionObserver(function (entries, observer) {

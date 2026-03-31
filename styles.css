@@ -21,7 +21,7 @@
     --syntax-number: #d19a66;
     --syntax-method: #61afef;
 
-    /* Fonts */
+
     --font-main: 'Inter', sans-serif;
     --font-mono: 'Fira Code', monospace;
 
@@ -36,9 +36,7 @@
     --transition-slow: 0.5s ease-in-out;
 }
 
-/* =========================================================================
-   Reset & Global Styles
-   ========================================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -49,6 +47,7 @@ html {
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--bg-tertiary) var(--bg-primary);
+    scroll-padding-top: var(--nav-height);
 }
 
 body {
@@ -215,6 +214,11 @@ nav.scrolled {
 .nav-links li a {
     font-size: 14px;
     font-family: var(--font-mono);
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: var(--accent-color);
 }
 
 .hamburger {
@@ -931,8 +935,8 @@ footer p {
    ========================================================================= */
 .fade-in {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-in.appear {
