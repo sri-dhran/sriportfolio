@@ -144,24 +144,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 6. Form Submission (Prevent default for UI demo)
+    // 6. Form Submission to Google Apps Script
     const contactForm = document.getElementById('contact-form');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw3aUdPfrKwP6-SW61F5FXZntVZuXmUumLL_y7yxAIrtTbNnFeLdfzlzSHuzPtwQwhp/exec';
+
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const btn = contactForm.querySelector('button');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-            btn.style.backgroundColor = 'var(--text-highlight)';
-            btn.style.color = 'var(--bg-primary)';
 
-            contactForm.reset();
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnContent = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.backgroundColor = '';
-                btn.style.color = '';
-            }, 3000);
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            // Remove any existing messages
+            const existingMsg = contactForm.querySelector('.form-message');
+            if (existingMsg) existingMsg.remove();
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Important for Google Apps Script
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                // Since we use no-cors, we can't reliably read the response body or status.
+                // However, if the fetch doesn't throw, it's usually successful for this setup.
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.className = 'form-message success';
+                successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully!';
+                contactForm.appendChild(successMsg);
+
+                // Reset form and button
+                contactForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+                
+                // Remove message after 5 seconds
+                setTimeout(() => successMsg.remove(), 5000);
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                
+                // Show error message
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'form-message error';
+                errorMsg.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error sending message. Please try again.';
+                contactForm.appendChild(errorMsg);
+                
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+            });
         });
     }
 });
